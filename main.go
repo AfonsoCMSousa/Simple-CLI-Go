@@ -337,6 +337,34 @@ func init() {
 	})
 
 	registerCommand(&comand.Command{
+		Name:        "clear",
+		Description: "Clears a file (can handle *)",
+		UsageText:   "clear <filename>",
+		Execute: func(args []string) string {
+			if len(args) == 0 {
+				return "No file provided\n"
+			}
+
+			if args[0] == "*" {
+				for i := 0; i < filesIndex; i++ {
+					files[i].Truncate(0)
+					files[i].Seek(0, 0)
+				}
+				return "Cleared all files\n"
+			}
+
+			for i := 0; i < filesIndex; i++ {
+				if files[i].Name() == args[0] {
+					files[i].Truncate(0)
+					files[i].Seek(0, 0)
+					return "Cleared file\n"
+				}
+			}
+			return "File not loaded or does not exist\n"
+		},
+	})
+
+	registerCommand(&comand.Command{
 		Name:        "find",
 		Description: "Find a string in a file (can handle *)",
 		UsageText:   "find <filename> <string>",
@@ -435,34 +463,6 @@ func init() {
 				content += fmt.Sprintf("\t%d: %s\n", i, cmd)
 			}
 			return content
-		},
-	})
-
-	registerCommand(&comand.Command{
-		Name:        "clear",
-		Description: "Clears a file (can handle *)",
-		UsageText:   "clear <filename>",
-		Execute: func(args []string) string {
-			if len(args) == 0 {
-				return "No file provided\n"
-			}
-
-			if args[0] == "*" {
-				for i := 0; i < filesIndex; i++ {
-					files[i].Truncate(0)
-					files[i].Seek(0, 0)
-				}
-				return "Cleared all files\n"
-			}
-
-			for i := 0; i < filesIndex; i++ {
-				if files[i].Name() == args[0] {
-					files[i].Truncate(0)
-					files[i].Seek(0, 0)
-					return "Cleared file\n"
-				}
-			}
-			return "File not loaded or does not exist\n"
 		},
 	})
 
