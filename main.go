@@ -133,7 +133,7 @@ func init() {
 
 	registerCommand(&comand.Command{
 		Name:        "close",
-		Description: "Closes a file (can handle `*`)",
+		Description: "Closes a file (can handle *)",
 		UsageText:   "close <filename>",
 		Execute: func(args []string) string {
 			if len(args) == 0 {
@@ -164,7 +164,7 @@ func init() {
 
 	registerCommand(&comand.Command{
 		Name:        "write",
-		Description: "Write to a file (can handle `*`)",
+		Description: "Write to a file (can handle *)",
 		UsageText:   "write <filename> <content>",
 		Execute: func(args []string) string {
 			if len(args) < 2 {
@@ -237,7 +237,7 @@ func init() {
 
 	registerCommand(&comand.Command{
 		Name:        "writeLn",
-		Description: "Write to a file with a new line (can handle `*`)",
+		Description: "Write to a file with a new line (can handle *)",
 		UsageText:   "writeLn <filename> <content>",
 		Execute: func(args []string) string {
 			if len(args) < 2 {
@@ -304,7 +304,7 @@ func init() {
 
 	registerCommand(&comand.Command{
 		Name:        "read",
-		Description: "Reads content from a file (can handle `*`)",
+		Description: "Reads content from a file (can handle *)",
 		UsageText:   "read <filename>",
 		Execute: func(args []string) string {
 			if len(args) == 0 {
@@ -338,7 +338,7 @@ func init() {
 
 	registerCommand(&comand.Command{
 		Name:        "find",
-		Description: "Find a string in a file",
+		Description: "Find a string in a file (can handle *)",
 		UsageText:   "find <filename> <string>",
 		Execute: func(args []string) string {
 			if len(args) < 2 {
